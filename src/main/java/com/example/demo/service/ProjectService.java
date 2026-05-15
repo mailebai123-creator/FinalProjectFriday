@@ -5,9 +5,7 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
