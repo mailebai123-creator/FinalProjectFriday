@@ -31,6 +31,7 @@ public class BeksultanProjectController {
     }
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id){
+        // update 4
         projectService.delete(id);
         return "Project deleted";
     }
