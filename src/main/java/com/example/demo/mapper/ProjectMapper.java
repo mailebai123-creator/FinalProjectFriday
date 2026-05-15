@@ -10,11 +10,9 @@ import java.util.Map;
 public class Projectmapper {
     public Map<String,Object> toMap(Project project){
         Map<String,Object> map = new HashMap<>();
-
         map.put("id",project.getId());
         map.put("name",project.getName());
         map.put("description",project.getDescription());
-
         return map;
     }
 }
