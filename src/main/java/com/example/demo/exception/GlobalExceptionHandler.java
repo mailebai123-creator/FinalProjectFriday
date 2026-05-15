@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
@@ -26,7 +25,6 @@ public class GlobalExceptionHandler {
         e.getBindingResult()
                 .getFieldErrors()
                 .forEach(error->errors.put(error.getField(),error.getDefaultMessage()));
-
         return ResponseEntity.badRequest().body(errors);
     }
     @ExceptionHandler(Exception.class)
