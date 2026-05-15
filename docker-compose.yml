@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2384654
+      - POSTGRES_DB=taskdb
+    volumes:
+      # В PostgreSQL 18+ нужно монтировать корень, а не папку /data
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      # Проверка здоровья адаптирована под новую структуру путей
+      test: ["CMD-SHELL", "pg_isready -U postgres -d taskdb"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  spring_app:
+    build: .
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/taskdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=2384654
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - JWT_SECRET=9a72df93a4b5c6d7e8f90a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d
+      - JWT_EXPIRATION=86400000
+
+volumes:
+  postgres_data:
