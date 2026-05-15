@@ -20,6 +20,7 @@ public class BeksultanFilesController {
     }
     @GetMapping("/download/{filename}")
     public ResponseEntity<byte[]> download(@PathVariable String filename) throws  Exception{
+        // update 4
         byte[] data = fileService.download(filename);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename="+filename).body(data);

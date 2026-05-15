@@ -23,7 +23,7 @@ public class BeksultanCommentController {
     }
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id){
-        // update 2
+        // update 3
         commentService.delete(id);
         return "Comment deleted";
     }
