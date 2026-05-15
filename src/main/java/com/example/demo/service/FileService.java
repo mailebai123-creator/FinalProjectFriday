@@ -9,11 +9,9 @@ import java.nio.channels.MulticastChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 @Service
 @RequiredArgsConstructor
 public class FileService {
-
     private final String UPLOAD_DIR = "uploads/";
     public String upload(MultipartFile file) throws IOException {
         Path path = Paths.get(UPLOAD_DIR+file.getOriginalFilename());
