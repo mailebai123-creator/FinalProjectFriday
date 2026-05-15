@@ -18,12 +18,10 @@ public class AuthService {
     private final UserRepository repository;
     private final PasswordEncoder encoder;
     private final BeksultanJwtUtil jwtUtil;
-
     public String register(RegisterRequest registerRequest){
         if(repository.findByEmail(registerRequest.getEmail()).isPresent()){
             throw new BadRequestException("Email alredy exists");
         }
-
         User user = User.builder()
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
@@ -32,7 +30,6 @@ public class AuthService {
                 .build();
 
         repository.save(user);
-
         return "User registered";
     }
     public AuthResponse login(LoginRequest request){
