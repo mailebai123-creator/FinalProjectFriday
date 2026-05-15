@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class Projectmapper {
+public class ProjectMapper {
     public Map<String,Object> toMap(Project project){
         Map<String,Object> map = new HashMap<>();
         map.put("id",project.getId());
