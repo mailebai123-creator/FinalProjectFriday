@@ -26,6 +26,7 @@ public class BeksultanJwtUtil {
                 .compact();
     }
     public String extractEmail(String token){
+        // update 2
         return Jwts.parser()
                 .setSigningKey(secret)
                 .build()
