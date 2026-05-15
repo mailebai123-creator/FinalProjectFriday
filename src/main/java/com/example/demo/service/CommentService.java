@@ -12,7 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository repository;
-
     public List<Comment> getAll(){
         return repository.findAll();
     }
